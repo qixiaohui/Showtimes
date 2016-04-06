@@ -1,0 +1,22 @@
+{
+  "name": "showtime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "apicache": "0.0.12",
+    "async": "^2.0.0-rc.2",
+    "body-parser": "^1.15.0",
+    "compression": "^1.6.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "showtimes": "^2.1.0",
+    "underscore": "^1.8.3"
+  }
+}
