@@ -50,7 +50,13 @@
 	}
 
 	app.get('/ping', function(req, res){
-		res.send('pong');
+		var api = new showtimes(80221, {date: 7});
+		api.getTheaters(function(err, theaters){
+			if(err){
+				console.e("ping error");
+			}
+			res.send(theaters);
+		});
 	});
 
 	app.get('/showtimes/:lat/:long/:movie', apicache('10 hours'), fetchShowTimes);
