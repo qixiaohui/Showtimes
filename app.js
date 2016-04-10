@@ -2,6 +2,7 @@
 	'user-strict'
 
 	var express = require('express');
+	var rateLimit = require('express-rate-limit');
 	var app = express();
 	var bodyParser = require('body-parser');
 	var compress = require('compression');
@@ -20,6 +21,10 @@
 	app.use(compress());
 	app.use(cors());
 	app.use(logger('dev'));
+	app.enable('trust proxy');
+
+	var limitter = rateLimit({});
+	app.use(limitter);
 
 	console.log("about to launch server");
 

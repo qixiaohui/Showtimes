@@ -15,6 +15,7 @@
     "compression": "^1.6.1",
     "cors": "^2.7.1",
     "express": "^4.13.4",
+    "express-rate-limit": "^2.1.2",
     "gps2zip": "^2.1.0",
     "morgan": "^1.7.0",
     "showtimes": "^2.1.0",
