@@ -11,6 +11,7 @@
 	var showtimes = require('showtimes');
 	var apicache = require('apicache').options({debug: true}).middleware;
 	var _ = require('underscore');
+	var gps = require('gps2zip');
 	//var googleMap = require('./google_map_api');
 	var routes;
 
@@ -26,7 +27,9 @@
 		var lat = req.params.lat;
 		var long = req.params.long;
 		var mMovie = req.params.movie;
-		var api = new showtimes([lat, long], {});
+		var zip = gps.gps2zip(lat, long);
+		console.log(zip);
+		var api = new showtimes(zip.zip_code, {date: "1"});
 		//var geocoder = new googleMap.google.maps.Geocoder();
 		api.getTheaters(function(err, theaters){
 			if(err){
@@ -50,7 +53,7 @@
 	}
 
 	app.get('/ping', function(req, res){
-		var api = new showtimes(80221, {date: 7});
+		var api = new showtimes(80221, {date:"7"});
 		api.getTheaters(function(err, theaters){
 			if(err){
 				console.e("ping error");
