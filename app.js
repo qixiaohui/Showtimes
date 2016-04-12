@@ -28,8 +28,9 @@
 		var long = req.params.long;
 		var mMovie = req.params.movie;
 		var zip = gps.gps2zip(lat, long);
+		var days = req.params.days.toString();
 		console.log(zip);
-		var api = new showtimes(zip.zip_code, {date: "1"});
+		var api = new showtimes(zip.zip_code, {date: days});
 		//var geocoder = new googleMap.google.maps.Geocoder();
 		api.getTheaters(function(err, theaters){
 			if(err){
@@ -53,7 +54,7 @@
 	}
 
 	app.get('/ping', function(req, res){
-		var api = new showtimes(80221, {date:"7"});
+		var api = new showtimes(80221, {date:"1"});
 		api.getTheaters(function(err, theaters){
 			if(err){
 				console.e("ping error");
@@ -62,7 +63,7 @@
 		});
 	});
 
-	app.get('/showtimes/:lat/:long/:movie', apicache('10 hours'), fetchShowTimes);
+	app.get('/showtimes/:lat/:long/:movie/:days', fetchShowTimes);
 
 	app.use(cors());
 
