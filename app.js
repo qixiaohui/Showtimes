@@ -58,6 +58,10 @@
 		});
 	}
 
+	app.configure(function(){
+		app.set('port', process.env.PORT || 3000);
+	}
+
 	app.get('/schedule/theaters/:name/:zip/:day', apicache('1 day'), function(req, res){
 	    req.apicacheGroup = req.params.name+req.params.zip+req.params.day;
 	    let name = req.params.name;
