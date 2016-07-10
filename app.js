@@ -58,6 +58,24 @@
 		});
 	}
 
+	app.get('/schedule/theaters/:name/:zip/:day', apicache('1 day'), function(req, res){
+	    req.apicacheGroup = req.params.name+req.params.zip+req.params.day;
+	    let name = req.params.name;
+	    let zip = req.params.zip;
+	    let day = req.params.day;
+
+	    var api = new showtimes(zip.zip_code, {date: day});
+
+	    api.getTheaters((err, theaters) => {
+	        if(err){
+	            res.status(400).send('Ooops something went wrong');
+	            return;
+	        }
+
+	        res.send(theaters);
+	    });
+	});
+
 	app.get('/ping', function(req, res){
 		var api = new showtimes(80221, {date:"1"});
 		api.getTheaters(function(err, theaters){
